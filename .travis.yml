@@ -35,6 +35,8 @@ install:
   - pip install  obspy
   - pip install pytest-xdist  pytest-cov coveralls
   - pip install configparser  # for python27
+  
+  - pip freeze
 
 # command to run tests
 script:
