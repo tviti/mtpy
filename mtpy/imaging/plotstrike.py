@@ -329,9 +329,6 @@ class PlotStrike(object):
         #--> get min and max period
         self.max_per = np.amax([np.max(list(mm.keys())) for mm in inv_list], axis=0)
         self.min_per = np.amin([np.min(list(mm.keys())) for mm in pt_list], axis=0)
-        
-        
-        print(self.max_per, self.min_per, type(self.max_per), type(self.min_per))
 
         # make empty arrays to put data into for easy manipulation
         medinv = np.zeros((nt, nc))
