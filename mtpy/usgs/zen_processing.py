@@ -385,7 +385,7 @@ class Survey_Config(object):
 #==============================================================================
 # Z3D files to EDI using BIRRP
 #==============================================================================
-class Z3D_to_edi(object):
+class Z3D2EDI(object):
     """
     go from z3d files to .edi using BIRRP as the processing code
 
@@ -444,7 +444,7 @@ class Z3D_to_edi(object):
     ------------
 
         >>> import mtpy.usgs.zen_processing as zp
-        >>> zp_obj = zp.Z3D_to_edi()
+        >>> zp_obj = zp.Z3D2EDI()
         >>> zp_obj.station_dir = r"/home/data/mt01"
         >>> zp_obj.rr_station_dir = r"/home/data/mt02"
         >>> zp_obj.birrp_exe = r"/home/bin/birrp52"
@@ -1445,7 +1445,7 @@ class Z3D_to_edi(object):
 
         #print(self.survey_config_fn)
 
-        j2edi_obj = birrp.J_To_Edi(station=self.survey_config.station,
+        j2edi_obj = birrp.J2Edi(station=self.survey_config.station,
                                    survey_config_fn=self.survey_config_fn,
                                    birrp_dir=birrp_output_path,
                                    birrp_config_fn=self.birrp_config_fn)
@@ -1958,7 +1958,7 @@ def compute_mt_response(survey_dir, station='mt000', copy_date=None,
     #--> process data
 
     with Capturing() as output:
-        z2edi = Z3D_to_edi(station_dir)
+        z2edi = Z3D2EDI(station_dir)
         z2edi.birrp_exe = birrp_exe
         z2edi.coil_cal_path = ant_calibrations
         try:
