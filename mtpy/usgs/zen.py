@@ -569,17 +569,17 @@ class Z3DMetadata(object):
         self.board_cal = []
         self.coil_cal = []
         self.count = 0
+        m_list = []
         while self.find_metadata == True:
             try:
-                test_str = self.fid.read(self._metadata_length).decode()
+                test_str = self.fid.read(self._metadata_length).decode().lower()
             except UnicodeDecodeError:
                 self.find_metadata = False
-                print('Ended Metadata at {0} bytes'.format(self.fid.tell()))
                 break
             if test_str.lower().find('metadata record') > 0:
                 self.count += 1
                 cal_find = False
-                test_str = test_str.strip().split('\n')[1]
+                test_str = test_str.strip().split('record')[1].strip()
                 if test_str.count('|') > 1:
                     for t_str in test_str.split('|'):
                         # get metadata name and value
