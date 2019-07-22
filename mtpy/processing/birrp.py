@@ -121,8 +121,8 @@ class BIRRP_Parameters(object):
             param_dict['ainlin'] = self.ainlin
             param_dict['ainuin'] = self.ainuin
             if self.nrr == 1:
-                param_dict['c2thresh'] = self.c2threshb
-                param_dict['c2threse'] = self.c2threshe
+                param_dict['c2threshb'] = self.c2threshb
+                param_dict['c2threshe'] = self.c2threshe
                 if self.c2threshe == 0 and self.c2threshb == 0:
                     param_dict['nz'] = self.nz
                 else:
@@ -131,10 +131,10 @@ class BIRRP_Parameters(object):
                     param_dict['perhi'] = self.perhi
             elif self.nrr == 0:
                 param_dict['c2threshb'] = self.c2threshb
-                param_dict['c2threse'] = self.c2threshe
+                param_dict['c2threshe'] = self.c2threshe
             param_dict['nprej'] = self.nprej
             param_dict['prej'] = self.prej
-            param_dict['c2thresh1'] = self.c2threshe1
+            param_dict['c2threshe1'] = self.c2threshe1
 
         return param_dict
 
