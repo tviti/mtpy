@@ -519,7 +519,7 @@ def write_dict_to_configfile(dictionary, output_filename):
         except:
             #if not configobject.has_section('DEFAULT'):
             #    configobject.add_section('')
-            configobject.set('',key,val)
+            configobject.set('',key,str(val))
 
 
     with open(output_filename, 'w') as F:
