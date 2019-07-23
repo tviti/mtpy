@@ -66,6 +66,7 @@ class BIRRP_Parameters(object):
         self.nprej = 0
         self.prej = None
         self.c2threshe1 = 0
+        self.deltat = None
 
         self.thetae = [0, 90, 0]
         self.thetab = [0, 90, 0]
@@ -83,6 +84,7 @@ class BIRRP_Parameters(object):
         """
 
         param_dict = {}
+        param_dict['deltat'] = self.deltat
         param_dict['ninp'] = self.ninp
         param_dict['nout'] = self._nout
         param_dict['nref'] = self._nref
@@ -648,6 +650,9 @@ class ScriptFile(BIRRP_Parameters):
         else:
             lines += ['-2']
             lines += [fn_arr['calibration_fn']]
+
+        if self.imode == 1:  # Unformatted binary files
+            lines += ['{0:d}'.format(0)]
         lines += [fn_arr['fn']]
         lines += ['{0:d}'.format(fn_arr['nskip'])]
 
