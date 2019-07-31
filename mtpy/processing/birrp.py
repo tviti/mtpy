@@ -193,11 +193,12 @@ class BIRRP_Parameters(object):
             if self.nsctinc != 2:
                 print('!WARNING! Check decimation increment nsctinc, should be 2 not {0}'.format(self.nsctinc))
 
-            if self.nfsect != 2:
-                print('Will get an error from BIRRP if nfsect is not 2.')
-                print('number of frequencies per section is {0}'.format(self.nfsect))
-                self.nfsect = 2
-                print('  --> setting nfsect to 2')
+            # Stop it. No I won't (not if you set the max freqs. per sect to 4!)
+            # if self.nfsect != 2:
+            #     print('Will get an error from BIRRP if nfsect is not 2.')
+            #     print('number of frequencies per section is {0}'.format(self.nfsect))
+            #     self.nfsect = 2
+            #     print('  --> setting nfsect to 2')
 
             if self.nf1 != self.tbw+2:
                 print('!WARNING! First frequency should be around tbw+2.')
