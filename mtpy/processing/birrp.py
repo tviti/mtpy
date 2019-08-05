@@ -9,6 +9,8 @@ Created on Tue Sep 20 14:33:20 2016
 @author: jrpeacock
 """
 
+from IPython.core.debugger import set_trace
+
 #==============================================================================
 import numpy as np
 import os
@@ -240,12 +242,11 @@ class BIRRP_Parameters(object):
             self.thetab = [0, 90, 0]
             print('  --> setting thetab to {0}'.format(self.thetab))
 
-
-        if len(self.thetaf) != 3:
-            print('Fiedl rotation angles not input properly {0}'.format(self.thetaf))
-            print('input as north, east, orthogonal rotation')
-            self.thetaf = [0, 90, 0]
-            print('  --> setting thetaf to {0}'.format(self.thetaf))
+        # if len(self.thetaf) != 3:
+        #     print('Fiedl rotation angles not input properly {0}'.format(self.thetaf))
+        #     print('input as north, east, orthogonal rotation')
+        #     self.thetaf = [0, 90, 0]
+        #     print('  --> setting thetaf to {0}'.format(self.thetaf))
 
 
     def read_config_file(self, birrp_config_fn):
@@ -620,14 +621,17 @@ class ScriptFile(BIRRP_Parameters):
                     s_lines += fn_lines
 
         #write rotation angles
-        s_lines += [' '.join(['{0:.2f}'.format(theta) for theta in self.thetae])]
-        s_lines += [' '.join(['{0:.2f}'.format(theta) for theta in self.thetab])]
-        s_lines += [' '.join(['{0:.2f}'.format(theta) for theta in self.thetaf])]
+        s_lines += [' '.join(['{0:.4f}'.format(theta) for theta in self.thetae])]
+        s_lines += [' '.join(['{0:.4f}'.format(theta) for theta in self.thetab])]
+        # s_lines += [' '.join(['{0:.2f}'.format(theta) for theta in self.thetaf])]
 
-        if self.nref > 3:
-            for kk in range(self.nref):
-                s_lines += [' '.join(['{0:.2f}'.format(theta) for theta in self.thetab])]
+        # if self.nref > 3:
+        #     for kk in range(self.nref):
+        #         s_lines += [' '.join(['{0:.2f}'.format(theta) for theta in self.thetab])]
 
+        for kk in range(len(self.thetaf)):
+            s_lines += [' '.join(['{0:.4f}'.format(theta)
+                                  for theta in self.thetaf[kk]])]
 
         with open(self.script_fn, 'w') as fid:
             fid.write('\n'.join(s_lines))
